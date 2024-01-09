@@ -49,7 +49,7 @@ export class HomePage {
       })
     ).subscribe({
       next: (result) => {
-        console.log(result);
+        // console.log(result);
         this.movies.push(...result.results);
         if (event) {
           event.target.disabled = result.total_pages === this.currentPage;
