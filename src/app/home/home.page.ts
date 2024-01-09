@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent, IonList, IonItem, IonAvatar, IonSkeletonText } from '@ionic/angular/standalone';
 import { MovieService } from '../services/movie.service';
 import { catchError, finalize } from 'rxjs';
 import { MovieResult } from '../interfaces';
@@ -10,16 +10,17 @@ import { MovieResult } from '../interfaces';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonAvatar, IonSkeletonText],
 })
 export class HomePage {
 
   private movieService = inject(MovieService);
   private currentPage = 1;
   private error = null;
-  private isLoading = false;
+  public isLoading = false;
   private movies: MovieResult[] = [];
   public imageBaseUrl = 'https://image.tmdb.org/t/p';
+  public dummyArray = new Array(5);
 
   constructor() {
     this.loadMovies();
