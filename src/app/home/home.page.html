@@ -32,9 +32,20 @@
         <h3>{{item.title}}</h3>
         <p>{{item.release_date | date:'y'}}</p>
       </ion-label>
+
+      <ion-badge slot="end">{{item.vote_average}}</ion-badge>
     </ion-item>
+    } @empty {
+    @if (!isLoading) {
+    <ion-item lines="none">
+      <ion-label class="ion-text-center">No movies found.</ion-label>
+    </ion-item>
+    }
     }
   </ion-list>
 
+  <ion-infinite-scroll (ionInfinite)="loadMoreMovies($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data.." />
+  </ion-infinite-scroll>
 
 </ion-content>
